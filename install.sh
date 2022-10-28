@@ -47,7 +47,7 @@ mv vc/tools/MSVC vc/tools/msvc
 # filesystem. Therefore add matching case symlinks for this, to allow
 # linking MSVC built objects with lld-link.
 cd $(echo vc/tools/msvc/* | awk '{print $1}')/lib
-for arch in x86 x64 arm arm64; do
+for arch in x86 x64; do
     if [ ! -d "$arch" ]; then
         continue
     fi
@@ -95,7 +95,7 @@ $ORIG/lowercase kits/10/include/$SDKVER/um
 $ORIG/lowercase kits/10/include/$SDKVER/shared
 $ORIG/fixinclude kits/10/include/$SDKVER/um
 $ORIG/fixinclude kits/10/include/$SDKVER/shared
-for arch in x86 x64 arm arm64; do
+for arch in x86 x64; do
     if [ ! -d "kits/10/lib/$SDKVER/um/$arch" ]; then
         continue
     fi
@@ -105,7 +105,7 @@ done
 SDKVER=$(basename $(echo kits/10/include/* | awk '{print $NF}'))
 MSVCVER=$(basename $(echo vc/tools/msvc/* | awk '{print $1}'))
 cat $ORIG/wrappers/msvcenv.sh | sed 's/MSVCVER=.*/MSVCVER='$MSVCVER/ | sed 's/SDKVER=.*/SDKVER='$SDKVER/ > msvcenv.sh
-for arch in x86 x64 arm arm64; do
+for arch in x86 x64; do
     if [ ! -d "vc/tools/msvc/$MSVCVER/bin/Hostx64/$arch" ]; then
         continue
     fi

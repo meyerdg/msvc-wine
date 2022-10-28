@@ -60,7 +60,7 @@ def getArgsParser():
 
 def setPackageSelectionMSVC16(args, packages, userversion, sdk, toolversion, defaultPackages):
     if findPackage(packages, "Microsoft.VisualStudio.Component.VC." + toolversion + ".x86.x64", None, warn=False):
-        args.package.extend(["Win10SDK_" + sdk, "Microsoft.VisualStudio.Component.VC." + toolversion + ".x86.x64", "Microsoft.VisualStudio.Component.VC." + toolversion + ".ARM", "Microsoft.VisualStudio.Component.VC." + toolversion + ".ARM64"])
+        args.package.extend(["Win10SDK_" + sdk, "Microsoft.VisualStudio.Component.VC." + toolversion + ".x86.x64"])
     else:
         # Options for toolchains for specific versions. The latest version in
         # each manifest isn't available as a pinned version though, so if that
@@ -81,7 +81,7 @@ def setPackageSelectionMSVC15(args, packages, userversion, sdk, toolversion, def
 def setPackageSelection(args, packages):
     # If no packages are selected, install these versionless packages, which
     # gives the latest/recommended version for the current manifest.
-    defaultPackages = ["Microsoft.VisualStudio.Workload.VCTools", "Microsoft.VisualStudio.Component.VC.Tools.ARM", "Microsoft.VisualStudio.Component.VC.Tools.ARM64"]
+    defaultPackages = ["Microsoft.VisualStudio.Workload.VCTools"]
 
     # Note, that in the manifest for MSVC version X.Y, only version X.Y-1
     # exists with a package name like "Microsoft.VisualStudio.Component.VC."
